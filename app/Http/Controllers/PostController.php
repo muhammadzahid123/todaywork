@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreBlogPost;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -12,20 +13,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
 
-       if($request->isMethod('POST'))
-       {
-           echo 'requested is accepted';
-           dd();
-       }
-       else
-       {
-        echo 'requested is not accepted';
-        dd();
-
-       }
         $posts = new Post;
         $data = $posts->data();
         return view('posts.index', compact('data'));
@@ -36,7 +26,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
         return view('posts.create');
     }
@@ -47,21 +37,15 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBlogPost $request)
     {
         // if($request->hasFile('photo'))
         // // $filename = sprintf('text_%s.jpg',random_int(1,1000));
         // // $request->file('photo')->storeAs('image', $filename, 'public');
         // $data = ['name'=>'zahid', 'age=>24'];
         // return 'hello world';
-
-        $request->validate([
-            'title' => 'required',
-            'content' => 'required',
-            'photo' => 'required',
-            'check' => 'required',
-        ]);
-        return back()->withInput();
+        dd($request->all());
+        return back()->with('message', 'your form has been sumitted');
     }
 
     /**
@@ -72,7 +56,13 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $data =
+        [
+            'name' => 'zahid',
+            'age' => 40
+        ];
+
+        return view('posts.show', compact('data'));
     }
 
     /**
@@ -93,7 +83,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreBlogPost $request, $id)
     {
         //
     }

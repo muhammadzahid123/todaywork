@@ -1,23 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('layout.layout1')
+@section('title', 'list of posts')
+@section('content')
     <h1>Single Record</h1>
     <ul>
 
         <li>
-            {{$data['title']}}<br>
+            {{$data['name']}}<br>
 
 
-            {{$data['content']}}
+            {{$data['age']}}
         </li>
 
 
     </ul>
-</body>
-</html>
+    @endsection
+
