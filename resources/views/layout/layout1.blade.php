@@ -16,8 +16,39 @@
     </style>
 </head>
 <body>
+
+
+{{-- <?php if($users) { ?> --}}
+{{-- <?php foreach ($users as $users){?> --}}
+{{-- <?php echo $user->name; ?> --}}
+
+{{-- <?php } ?> --}}
+{{-- <?php }?> --}}
+
+
+
+    {{-- @if ($users)
+    @foreach ($users as $user )
+     <li>{{$user->name}} </li>
+    @endforeach
+
+    @endif
+
+    @forelse ($users as $user)
+    <li>{{$user->name}} </li>
+    @empty
+    <li>{{'no user exits'}} </li>
+    @endforelse
 <div class="container">
+        @hasSection('navigation')
+<div class="pull-right">
+    @yield('navigation')
+</div>
+<div class="clearfix"></div>
+        @endif
     <h2>@yield('title')</h2>
+
+    <h2>@yield('title')</h2> --}}
 @if (Session()->has('message'))
    <p>Session()->get('message')</p>
 @endif
