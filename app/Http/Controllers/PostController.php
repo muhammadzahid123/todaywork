@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBlogPost;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -16,8 +17,30 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = new Post;
-        $data = $posts->data();
+        // $user =  DB::table('profile')->get();
+        // foreach($user as $u)
+        // {
+        // echo $u->name;
+        // }
+        // dd($user);
+
+        // dd(env('APP_URL'));
+        // $posts = new Post;
+        // $data = $posts->data();
+
+        // Select, Insert, Update, Delete and Statement
+        // $profile = DB::select('SELECT * from profile where id= :id', ['id'=>1]);
+        $profile = DB::insert('INSERT INTO profile(`name`, `phone`, `city`, `country`, `role`) VALUES (:name, :phone, :city, :country, :role)',
+        //   $profile = DB::update('update profile set phone = "585876" where id = :id', ['id' => 2]);
+        // $profile = DB::delete('DELETE from profile where id = :id', ['id' => 3]);
+        // $profile = DB::statement('DROP TABLE pk');
+        ['name'=> 'zahid',
+          'phone'=>'6686969',
+          'city'=> 'Italy',
+          'country'=>'pakistan',
+          'role'=> 'admin'
+    ]);
+        dd($profile);
         return view('posts.index', compact('data'));
     }
 
